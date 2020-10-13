@@ -1,0 +1,33 @@
+{
+  "name": "socialmedia-bradtraversy",
+  "version": "1.0.0",
+  "description": "Social media App",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Rishabh Tripathi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vegito27/SocialMedia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vegito27/SocialMedia/issues"
+  },
+  "homepage": "https://github.com/vegito27/SocialMedia#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.9",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "validator": "^13.1.17"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
