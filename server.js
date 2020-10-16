@@ -8,38 +8,43 @@ const profile=require('./router/profile')
 
 const posts=require('./router/posts')
 
-app.get('/',(request,response)=>{
+const mongoose=require("mongoose");
 
-	response.send('Hello World')
+ const passport=require("passport");
 
-})
+const bodyParser=require('body-parser')
 
+
+app.use(bodyParser.urlencoded({extended:false}))
+
+app.use(bodyParser.json()) 
+
+app.use(passport.initialize())
+
+require('./config/passport')(passport) 
+
+const uri="mongodb+srv://socialApp:rishabh@123@cluster0.sadge.gcp.mongodb.net/mydb?retryWrites=true&w=majority"
+
+
+mongoose.connect(uri,{ useUnifiedTopology: true , useNewUrlParser: true })
+
+const connection=mongoose.connection;
+
+connection.once("open",()=>{
+    console.log("MongoDB database connection established successfully");
+
+}).catch(err=>console.error(err))
+
+
+app.get("/", (req, res) => {
+  res.send("hello");
+});
 
 app.use('/api/users',users)
 app.use('/api/profile',profile)
 app.use('/api/posts',posts)
 
-const port= process.env.PORT || 5000
 
-app.listen(port,()=>console.log(`Server running on port ${port}`))
-
-
-const MongoClient = require('mongodb').MongoClient;
-
-const uri = "mongodb+srv://socialApp:rishabh@123@cluster0.sadge.gcp.mongodb.net/mydb?retryWrites=true&w=majority";
-
-
-
-
-
-const client = new MongoClient(uri, { useUnifiedTopology: true}, { useNewUrlParser: true })
-	client.connect(err => {
-		
-	const collection = client.db("mydb").collection("myCollection")
-
-	console.log('Mongo Connected')
-    
-    client.close();
-})
-
-	
+app.listen(4000, () => {
+  console.log("server start at 4000");
+});	
