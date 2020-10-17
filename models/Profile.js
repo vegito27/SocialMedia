@@ -32,10 +32,9 @@ const ProfileSchema=new Schema({
 	},
 	bio:{
 		type:String,
-		required:true
 	},
 	githubusername:{
-		type:String,
+		type:String
 	},
 		
 	experience:[{
@@ -44,12 +43,10 @@ const ProfileSchema=new Schema({
 			required:true
 		},
 		company:{
-			type:String,
-			required:true
+			type:String
 		},
 		location:{
-			type:String,
-			required:true
+			type:String
 		},
 		from:{
 			type:Date,
@@ -65,8 +62,6 @@ const ProfileSchema=new Schema({
 		description:{
 			 type:String
 		}
-
-
 	}],
 	education:[{
 		school:{
@@ -97,7 +92,6 @@ const ProfileSchema=new Schema({
 		}
 	}],
 	social:{
-
 		youtube:{
 			type:String
 		},

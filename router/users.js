@@ -106,7 +106,7 @@ router.post('/login',(request,response)=>{
 	  		  		const payload={id:user.id,name:user.name,avatar:user.avatar}
 	  		  	
 
-	  		  	jwt.sign(payload,secretOrKeys,{expiresIn:3600},(err,token)=>{
+	  		  	jwt.sign(payload,secretOrKeys,{expiresIn:86400},(err,token)=>{
 
 	  		  		response.json({
 	  		  			Success:true,
@@ -134,14 +134,10 @@ router.post('/login',(request,response)=>{
 
 router.get('/current',passport.authenticate('jwt',{session:false}),(request,response)=>{
 
-			response.json(request.user )})
+			response.json(request.user)
 
 
-
-
-
-
-
+		})
 
 
 

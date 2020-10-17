@@ -6,10 +6,8 @@ module.exports=function validateLoginInput(data){
 
 	let error={}
 
-
 	data.email=!isEmpty(data.email)?data.email:'';
 	data.password=!isEmpty(data.password)?data.password:'';
-
 
 
 	if(Validator.isEmpty(data.email)){
@@ -24,10 +22,6 @@ module.exports=function validateLoginInput(data){
 	if(Validator.isEmpty(data.password)){
 		error.password="Password field must not be Empty"
 	}
-
-
-	
-
 
 	return { 
 		error,
