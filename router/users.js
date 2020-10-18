@@ -72,7 +72,6 @@ router.post('/register',(request,response)=>{
 				})
 			}
 		})
-
 	})
 
 
@@ -123,10 +122,8 @@ router.post('/login',(request,response)=>{
 	  		  	return response.status(400).json(error)
 
 		  		  	}
-
 		  		})
 			}) 
-	
 		})
 
 
@@ -142,25 +139,6 @@ router.get('/current',passport.authenticate('jwt',{session:false}),(request,resp
 
 
 module.exports=router 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
