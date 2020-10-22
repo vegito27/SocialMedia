@@ -2,13 +2,17 @@ import React from 'react';
 import Register from './Register'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import {loginUser} from '../../actions/authActions'
+import TextFieldGroup from '../../common/TextFieldGroup'
 
 class Login extends React.Component {
 	
 	constructor(props) {
 		super(props);
 
-	this.sate={
+	this.state={
 				email:'',
 				password:'',
 				error:{}
@@ -17,6 +21,17 @@ class Login extends React.Component {
 			this.onChange=this.onChange.bind(this)
 			this.onSubmit=this.onSubmit.bind(this)
 
+	}
+
+	componentWillReceiveProps(nextProps){
+
+		if(nextProps.auth.isAuthenticated){
+			this.props.history.push('/dashboard')
+		}
+
+		if(nextProps.error){
+			this.setState({error:nextProps.error})
+		}
 	}
 
 	onChange(e){
@@ -30,15 +45,16 @@ class Login extends React.Component {
 
 		 const newUser={
 		 	email:this.state.email,
-		 	password:this.state.password,
-		 	
-
+		 	password:this.state.password
 		 }
 
-		 console.log(newUser)
+		this.props.loginUser(newUser)
 	}
 
 	render() {
+
+		const {error}=this.state
+
 		return (
 			<section className="container col-md-8 m-auto">
 			     
@@ -46,36 +62,14 @@ class Login extends React.Component {
 			      
 			      <p className="lead"><i className="fas fa-user mr-3"></i> Enter Your Credentials</p>
 			      
-			      <form className="form" onSubmit={this.onSubmit}>
-			        
-			        
-			        
-			        <div className="form-group">
-			          <input type="email" 
-			          placeholder="Email Address" 
-			          className="form-control form-control-lg" 
-			          name="email" onChange={this.onChange} 
-			           
-			          />
+			      <form className="form" noValidate onSubmit={this.onSubmit}>
+
+				     <TextFieldGroup placeholder="Email" name="email" type="email" value={this.state.email} onChange={this.onChange} error={error.email } />
 
 			          <small className="form-text"> This site uses Gravatar so if you want a profile image, use a Gravatar email </small>
+			        
+			        <TextFieldGroup placeholder="Password" name="password" type="password" value={this.state.password} onChange={this.onChange} error={error.password } />
 
-			        </div>
-			        
-			        <div className="form-group">
-			          <input
-			            type="password"
-			            placeholder="Password"
-			            name="password"
-			            minLength="6"
-			            className="form-control form-control-lg"
-			            
-			            onChange={this.onChange}
-			          />
-			        </div>
-			        
-			        
-			       
 			        <input type="submit" className="btn btn-info btn-block mt-4" value="Login" />
 
 			      </form>
@@ -88,4 +82,26 @@ class Login extends React.Component {
 	}
 }
 
-export default Login
+Login.propTypes={
+	loginUser:PropTypes.func.isRequired,
+	auth:PropTypes.object.isRequired,
+	error:PropTypes.object.isRequired
+}
+
+
+const mapStateToProps=(state)=>({
+	auth:state.auth,
+	error:state.error
+})
+
+
+export default connect(mapStateToProps ,{loginUser})(Login)
+
+
+
+
+
+
+
+
+

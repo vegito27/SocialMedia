@@ -1,14 +1,19 @@
 import React from 'react';
 import Login from './Login'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import classnames from 'classnames'
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+import {registerUser} from '../../actions/authActions'
+import { withRouter } from 'react-router-dom'
+import TextFieldGroup from '../../common/TextFieldGroup'
 
 class Register extends React.Component {
 	
 	constructor(props) {
 		super(props);
 
-		this.sate={
+		this.state={
 				name:'',
 				email:'',
 				password:'',
@@ -18,9 +23,15 @@ class Register extends React.Component {
 		this.onChange=this.onChange.bind(this)
 		this.onSubmit=this.onSubmit.bind(this)
 
-
 	}
 
+	componentWillReceiveProps(nextProps){
+		if(nextProps.error){
+
+			this.setState({error:nextProps.error})
+
+		}
+	}
 
 	onChange(e){
 
@@ -39,41 +50,44 @@ class Register extends React.Component {
 
 		 }
 
-		 axios.post('/users/register',newUser)
-		 .then(res=>console.log(res))
-		 .catch(err=>console.log(err.response.data))
+		 this.props.registerUser(newUser,this.props.history)
 
-		 console.log(newUser)
 	}
 
 	render() {
+
+		
+
+		  const {error}=this.state || {}
+
+		  const {user}=this.props.auth
+			
+
 		return (
 			
 			<section className="container col-md-8 m-auto">
 			     
 			      <h1 className="large text-primary">Sign Up</h1>
+
+			     
 			      
 			      <p className="lead"><i className="fas fa-user mr-3"></i> Create Your Account</p>
 			      
-			      <form className="form" onSubmit={this.onSubmit}>
+			      <form className="form" noValidate onSubmit={this.onSubmit}>
 			        
-			        <div className="form-group">
-			          <input type="text" 
-			          placeholder="Name" 
-			          className="form-control form-control-lg" 
-			          name="name"  
-			          onChange={this.onChange.bind(this)} 
-			          required 
-			          />
-			        </div>
-			        
+			       
+			          
+			        <TextFieldGroup placeholder="Email" name="email" type="email" value={this.state.email} onChange={this.onChange} error={error.email } />
+    
 			        <div className="form-group">
 			          <input type="email" 
-			          placeholder="Email Address" 
-			          className="form-control form-control-lg" 
-			          name="email" onChange={this.onChange} 
-			           
+				          placeholder="Email Address" 
+				          className={classnames('form-control form-control-lg',{'is-invalid':error.email})}
+				          name="email" 
+				          onChange={this.onChange}    
 			          />
+
+			          {error.email && (<div className="invalid-feedback">{error.email}</div>)}
 
 			          <small className="form-text"> This site uses Gravatar so if you want a profile image, use a Gravatar email </small>
 
@@ -85,10 +99,10 @@ class Register extends React.Component {
 			            placeholder="Password"
 			            name="password"
 			            minLength="6"
-			            className="form-control form-control-lg"
-			            
+			            className={classnames('form-control form-control-lg',{'is-invalid':error.password })} 
 			            onChange={this.onChange}
 			          />
+			          {error.password && (<div className="invalid-feedback">{error.password}</div>)}
 			        </div>
 			        
 			        <div className="form-group">
@@ -97,10 +111,11 @@ class Register extends React.Component {
 			            placeholder="Confirm Password"
 			            name="password2"
 			            minLength="6"
-			            className="form-control form-control-lg"
+			            className={classnames('form-control form-control-lg',{'is-invalid':error.password2 })} 
 			            
 			            onChange={this.onChange}
 			          />
+			          {error.password2 && (<div className="invalid-feedback">{error.password2}</div>)}
 			        </div>
 			       
 			        <input type="submit" className="btn btn-info btn-block mt-4" value="Submit" />
@@ -116,4 +131,21 @@ class Register extends React.Component {
 	}
 }
 
-export default Register
+
+
+
+Register.propTypes={
+	registerUser:PropTypes.func.isRequired,
+	auth:PropTypes.object.isRequired,
+	error:PropTypes.object.isRequired
+}
+
+
+const mapStateToProps=(state)=>({
+	auth:state.auth,
+	error:state.error
+})
+
+
+
+export default connect(mapStateToProps,{registerUser})(withRouter(Register));
