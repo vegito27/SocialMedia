@@ -7,6 +7,7 @@ module.exports=function validateLoginInput(data){
 	let error={}
 
 	data.email=!isEmpty(data.email)?data.email:'';
+	
 	data.password=!isEmpty(data.password)?data.password:'';
 
 
