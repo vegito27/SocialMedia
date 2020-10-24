@@ -9,11 +9,9 @@ const validateExperienceInput=require('../validations/experience')
 const validateEducationInput=require('../validations/education')
 
 
-
-
 router.get('/',passport.authenticate('jwt',{session:false}),(request,response)=>{
 
-	const error={ }
+	const error={}
 
 	Profile.findOne({ user:request.user.id })
 	.then(profile=>{
@@ -29,8 +27,20 @@ router.get('/',passport.authenticate('jwt',{session:false}),(request,response)=>
 
 })
 
+router.delete('/',passport.authenticate('jwt',{session:false}) , async (req, res) => {
+  try {
+    // Remove user posts
+    // Remove profile
+    await Profile.findOneAndRemove({ user: req.user.id });
+    // Remove user
+    await User.findOneAndRemove({ _id: req.user.id });
 
-
+    res.json({ msg: 'User deleted' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 router.get('/handle/:handle',(request,response)=>{
 
@@ -38,7 +48,7 @@ router.get('/handle/:handle',(request,response)=>{
 	console.log(request.params.handle)
 
 	Profile.findOne({handle:request.params.handle})
-	.populate('DB',['name','avatar'])
+	.populate('user',['name','avatar'])
 	.then(profile=>{
 
 		if(!profile){
@@ -54,15 +64,14 @@ router.get('/handle/:handle',(request,response)=>{
 
 
 
-
-
-router.get('/user/:user_id',(request,response)=>{
+router.get('/user/:user_id', async (request,response)=>{
 
 	const error={}
 
-	Profile.findOne({user:request.params.user_id })
-	.populate('DB',['name','avatar'])
+	await Profile.findOne({user:request.params.user_id })
+	.populate('user',['name','avatar'])
 	.then(profile=>{
+
 		if(!profile){
 			error.noprofile="There is no profile for this user"
 			response.status(404).json(error)
@@ -76,11 +85,10 @@ router.get('/user/:user_id',(request,response)=>{
 
 
 
-router.get('/all',(request,response)=>{
+router.get('/all',passport.authenticate('jwt',{session:false}),(request,response)=>{
 
-
-	Profile.find()
-	.populate('DB',['name','avatar'])
+	Profile.find({user:request.user.id})
+	.populate('user',['name','avatar'])
 	.then(profiles=>{
 		if(!profiles){
 
@@ -126,7 +134,7 @@ router.post('/experience',passport.authenticate('jwt',{session:false}),(request,
 			profile.save().then(profile=>{
 				response.json(profile)
 			}) 
-		})
+		}).catch(err=>response.status(404).json(err))
 
 
 })
@@ -150,7 +158,6 @@ router.delete('/experience/:exp_id',passport.authenticate('jwt',{session:false})
 		})
 		.catch(err=>response.status(404).json(err))
 
-	
 
 })
 
@@ -158,27 +165,20 @@ router.delete('/experience/:exp_id',passport.authenticate('jwt',{session:false})
 router.delete('/education/:edu_id',passport.authenticate('jwt',{session:false}),(request,response)=>{
 
 
-	Profile.findOne({user:request.user.id})
-		.then(profile=>{
+	Profile.findOne({user:request.user.id}).then(profile=>{
 
-			const removeIndex=profile.education
-			.map(item=>item.id)
-			.indexOf(request.params.edu_id)
+			const removeIndex=profile.education.map(item=>item.id).indexOf(request.params.edu_id)
 
 			profile.education.splice(removeIndex,1)
 
-			profile.save().then(profile=>{
+			profile.save()
+			.then(profile=>{
 				response.json(profile)
 			}) 
 		})
 		.catch(err=>response.status(404).json(err))
 
 })
-
-
-
-
-
 
 
 router.post('/education',passport.authenticate('jwt',{session:false}),(request,response)=>{
@@ -189,7 +189,6 @@ router.post('/education',passport.authenticate('jwt',{session:false}),(request,r
 
 		return response.status(400).json(error)
 	}
-
 
 	Profile.findOne({user:request.user.id})
 		.then(profile=>{
@@ -210,9 +209,7 @@ router.post('/education',passport.authenticate('jwt',{session:false}),(request,r
 			profile.save().then(profile=>{
 				response.json(profile)
 			}) 
-		})
-
-
+		}).catch(err=>response.status(404).json(err))
 })
 
 
@@ -284,12 +281,5 @@ router.post('/',passport.authenticate('jwt',{session:false}),(request,response)=
 
 
 })
-
-
-
-
-
-
-
 
 module.exports=router 

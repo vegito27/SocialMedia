@@ -19,9 +19,6 @@ const validateRegisterInput=require('../validations/register')
 const validateLoginInput=require('../validations/login')
 
 
-router.get('/test',(request,response)=>response.json({msg:"Users work"}))
-
-
 router.post('/register',(request,response)=>{
 
 
@@ -125,8 +122,6 @@ router.post('/login',(request,response)=>{
 		  		})
 			}) 
 		})
-
-
 
 
 router.get('/current',passport.authenticate('jwt',{session:false}),(request,response)=>{

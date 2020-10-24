@@ -6,7 +6,7 @@ const ProfileSchema=new Schema({
 
 	user:{
 		type:Schema.Types.ObjectId,
-		ref:'users'
+		ref:'DB'
 	},
 	handle:{
 		type:String,
