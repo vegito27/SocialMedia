@@ -54,9 +54,7 @@ class Register extends React.Component {
 
 	}
 
-	render() {
-
-		
+	render() {		
 
 		  const {error}=this.state || {}
 
@@ -68,17 +66,26 @@ class Register extends React.Component {
 			<section className="container col-md-8 m-auto">
 			     
 			      <h1 className="large text-primary">Sign Up</h1>
-
-			     
-			      
+	      
 			      <p className="lead"><i className="fas fa-user mr-3"></i> Create Your Account</p>
 			      
 			      <form className="form" noValidate onSubmit={this.onSubmit}>
-			        
-			       
-			          
-			        <TextFieldGroup placeholder="Email" name="email" type="email" value={this.state.email} onChange={this.onChange} error={error.email } />
-    
+
+				      <div className="form-group">
+				          <input 
+					          type="text" 
+					          placeholder="Name" 
+					          className={classnames('form-control form-control-lg',{'is-invalid':error.name})}
+					          name="name" 
+					          onChange={this.onChange}    
+				          />
+
+				          {error.email && (<div className="invalid-feedback">{error.email}</div>)}
+
+				          <small className="form-text"> This site uses Gravatar so if you want a profile image, use a Gravatar email </small>
+
+				        </div>
+			     		      
 			        <div className="form-group">
 			          <input type="email" 
 				          placeholder="Email Address" 

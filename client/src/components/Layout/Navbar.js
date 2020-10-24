@@ -25,6 +25,10 @@ class Navbar extends React.Component {
 			<ul className="navbar-nav ml-auto">
 
 				<li className="nav-item">
+					<Link className="nav-link" to="/dashboard">Dashboard  </Link>
+				</li>
+
+				<li className="nav-item">
 					<a href="#" onClick={this.onLogoutClick.bind(this)} className="nav-link">
 						<img className="rounded-circle" src={user.avatar} alt={user.name} style={{width:'25px',marginRight:'5px'}} title="You must have a gratar connected to your email to display " />
 							Logout
