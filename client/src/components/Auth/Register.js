@@ -63,7 +63,7 @@ class Register extends React.Component {
 
 		return (
 			
-			<section className="container col-md-8 m-auto">
+			<section className="container col-md-8 m-auto text-center">
 			     
 			      <h1 className="large text-primary">Sign Up</h1>
 	      
@@ -100,7 +100,7 @@ class Register extends React.Component {
 
 			        </div>
 			        
-			        <div className="form-group">
+			        <div className="form-group my-2">
 			          <input
 			            type="password"
 			            placeholder="Password"
@@ -112,7 +112,7 @@ class Register extends React.Component {
 			          {error.password && (<div className="invalid-feedback">{error.password}</div>)}
 			        </div>
 			        
-			        <div className="form-group">
+			        <div className="form-group my-4">
 			          <input
 			            type="password"
 			            placeholder="Confirm Password"
@@ -129,7 +129,7 @@ class Register extends React.Component {
 
 			      </form>
 
-			      <p className="my-1">
+			      <p className="my-4">
 			        Already have an account? <Link to="/login" > Login </Link>
 			      </p>
 		    </section>

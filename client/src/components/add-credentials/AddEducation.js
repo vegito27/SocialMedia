@@ -79,7 +79,7 @@ import {addEducation} from '../../actions/profileActions'
 					<div className="row">
 						<div className="col-md-8 m-auto">
 						<Link to="/dashboard" className="btn btn-light">Go Back</Link>
-						<h4 className="display text-center">Add Education</h4>
+						<h4 className="display text-center">Add Education:</h4>
 						<p className="lead text-center">Add any school,bootcamp etc that you have attended</p>
 						<small className="d-blockpb-3">* = required fields</small>
 
@@ -156,6 +156,7 @@ import {addEducation} from '../../actions/profileActions'
 							 />
 
 							 <input type="submit" value="Submit" className="btn btn-info btn-block"/>
+							  <div style={{marginBottom:'120px'}} />
 						</form>
 
 						</div>

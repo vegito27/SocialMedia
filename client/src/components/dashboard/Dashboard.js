@@ -6,6 +6,7 @@ import Spinner from '../../common/Spinner'
 import {Link} from 'react-router-dom'
 import ProfileActions from './ProfileActions'
 import Experience from './Experience'
+import Education from './Education'
 
 class Dashboard extends React.Component {
 
@@ -33,6 +34,7 @@ class Dashboard extends React.Component {
 		let dashboardContent;
 
 		if(profile === null || loading){
+
 			dashboardContent=<Spinner />
 
 		}else{
@@ -45,6 +47,8 @@ class Dashboard extends React.Component {
 					<p className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link></p>
 					<ProfileActions />
 					<Experience experience={profile.experience} />
+					<hr className="mt-5 mb-5"/>
+					<Education education={profile.education} />
 
 					<div style={{marginBottom:'60px'}} />
 					<button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete My Account</button>
@@ -66,16 +70,16 @@ class Dashboard extends React.Component {
 			<div className="dashboard">
 
 			   <div className="container">
+				   <div className="row">
+					   <div className="col">
+						   <h4 className="display-4">Dashboard</h4>
 
-			   <div className="row">
-			   <div className="col">
-			   <h4 className="display-4">Dashboard</h4>
+						   {dashboardContent}
 
-			   {dashboardContent}
-
+					   </div>
+				   </div>
 			   </div>
-			   </div>
-			   </div>
+			   <div style={{marginBottom:'120px'}} />
 			</div>
 		);
 	}

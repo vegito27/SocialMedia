@@ -3,32 +3,34 @@ import {connect} from 'react-redux'
 import PropTypes from  'prop-types'
 import {withRouter} from 'react-router-dom'
 import Moment from 'react-moment'
-import {deleteExperience} from '../../actions/profileActions'
+import {deleteEducation} from '../../actions/profileActions'
 
  
- class Experience extends React.PureComponent {
+ class Education extends React.PureComponent {
 
 	constructor(props) {
 		super(props);
 	}
 
 	onDeleteClick(id){
-		this.props.deleteExperience(id)
+		this.props.deleteEducation(id)
 	}
 
 
 
 	render() {
 
-		console.log(this.props.experience)
+		console.log(this.props.education)
 
 
-		const  experience=this.props.experience.map(exp=>(
+		const  education=this.props.education.map(exp=>(
 
 			<tr key={exp._id}>
 
-				<td>{exp.company}</td>
-				<td>{exp.title}</td>
+				<td>{exp.school}</td>
+				<td>{exp.degree}</td>
+
+				<td>{exp.fieldofstudy}</td>
 
 				<td><Moment format="YYYY/MM/DD">{exp.from}</Moment> -{' '}
 				{exp.to===null ? ('Now'):( <Moment format="YYYY/MM/DD">{exp.to}</Moment>)} </td>
@@ -41,17 +43,18 @@ import {deleteExperience} from '../../actions/profileActions'
 
 		return (
 			<div >
-			<h4 className="mb-4 mt-4">Experience Credentials: </h4>
+			<h4 className="mb-4 mt-4">Education Credentials: </h4>
 			<table className="table">
 				<thead>
 					<tr>
-						<th>Comapny</th>
-						<th>Title</th>
+						<th>School</th>
+						<th>Degree</th>
+						<th>Field Of Study</th>
 						<th>Years</th>
 						<th>Actions</th>
 					</tr>
 
-				{experience}
+				{education}
 
 				</thead>
 			</table>
@@ -61,11 +64,11 @@ import {deleteExperience} from '../../actions/profileActions'
 		);	
 	}}
 
-Experience.propTypes={
-	deleteExperience:PropTypes.func.isRequired
+Education.propTypes={
+	deleteEducation:PropTypes.func.isRequired
 }
 
-export default connect(null,{ deleteExperience })(Experience)
+export default connect(null,{ deleteEducation })(Education)
 
 
 

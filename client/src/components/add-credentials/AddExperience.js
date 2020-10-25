@@ -153,7 +153,8 @@ import {addExperience} from '../../actions/profileActions'
 								 info="Tell us about the position"
 							 />
 
-							 <input type="submit" value="Submit" className="btn btn-info btn-block"/>
+							 <input type="submit" value="Submit" className="btn btn-info btn-block "/>
+							 <div style={{marginBottom:'120px'}} />
 						</form>
 
 						</div>

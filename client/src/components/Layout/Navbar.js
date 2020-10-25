@@ -7,7 +7,6 @@ import { clearCurrentProfile } from '../../actions/profileActions'
 
 class Navbar extends React.Component {
 
-
 	onLogoutClick(e){
 
 		e.preventDefault();
@@ -25,6 +24,10 @@ class Navbar extends React.Component {
 			<ul className="navbar-nav ml-auto">
 
 				<li className="nav-item">
+					<Link className="nav-link" to="/feed">Post Feed </Link>
+				</li>
+
+				<li className="nav-item">
 					<Link className="nav-link" to="/dashboard">Dashboard  </Link>
 				</li>
 
@@ -32,14 +35,16 @@ class Navbar extends React.Component {
 					<a href="#" onClick={this.onLogoutClick.bind(this)} className="nav-link">
 						<img className="rounded-circle" src={user.avatar} alt={user.name} style={{width:'25px',marginRight:'5px'}} title="You must have a gratar connected to your email to display " />
 							Logout
-						</a>
+					</a>
 				</li>
+
 			</ul>
 		)
 
 
 		const guestLinks=(
 			<ul className="navbar-nav ml-auto">
+
 				<li className="nav-item">
 					<Link className="nav-link" to="/register">SignUp</Link>
 				</li>
@@ -47,8 +52,8 @@ class Navbar extends React.Component {
 				<li className="nav-item">
 					<Link className="nav-link" to="/login">Login</Link>
 				</li>
-			</ul>
-		)
+
+			</ul>)
 
 
 

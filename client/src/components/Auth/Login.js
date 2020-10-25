@@ -15,13 +15,13 @@ class Login extends React.Component {
 	this.state={
 				email:'',
 				password:'',
-				error:{}
-				
+				error:{}	
 			}
+			
 			this.onChange=this.onChange.bind(this)
 			this.onSubmit=this.onSubmit.bind(this)
 
-	}
+		}
 
 	componentWillReceiveProps(nextProps){
 
@@ -56,7 +56,7 @@ class Login extends React.Component {
 		const {error}=this.state
 
 		return (
-			<section className="container col-md-8 m-auto">
+			<section className="container col-md-8 m-auto text-center">
 			     
 			      <h1 className="large text-primary">Login</h1>
 			      
@@ -74,7 +74,7 @@ class Login extends React.Component {
 
 			      </form>
 
-			      <p className="my-1">
+			      <p className="my-5">
 			        Already have an account? <Link to="/register" >Sign Up</Link>
 			      </p>
 		    </section>

@@ -243,6 +243,8 @@ class CreateProfile extends React.Component {
 							{socialInputs}
 							<input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
 
+							 <div style={{marginBottom:'120px'}} />
+
 
 							</form>
 

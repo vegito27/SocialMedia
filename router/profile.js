@@ -85,9 +85,9 @@ router.get('/user/:user_id', async (request,response)=>{
 
 
 
-router.get('/all',passport.authenticate('jwt',{session:false}),(request,response)=>{
+router.get('/all',(request,response)=>{
 
-	Profile.find({user:request.user.id})
+	Profile.find()
 	.populate('user',['name','avatar'])
 	.then(profiles=>{
 		if(!profiles){
@@ -154,7 +154,7 @@ router.delete('/experience/:exp_id',passport.authenticate('jwt',{session:false})
 
 			profile.save().then(profile=>{
 				response.json(profile)
-			}) 
+			}).catch(err=>response.status(404).json(err)) 
 		})
 		.catch(err=>response.status(404).json(err))
 

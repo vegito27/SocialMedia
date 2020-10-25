@@ -16,16 +16,18 @@ module.exports=function validatePostInput(data){
 		error.text="Text field must not be Empty"
 	}
 
+<<<<<<< HEAD
 	if(!Validator.isLength(data.text,{min:10,max:300})){
 		error.text="Post must be between 10 and 300 Character"
 	}
 
-
+=======
 	if(Validator.isLength(data.text,{min:10,max:300})){
 		error.text="Post must be between 10 and 300 Character"
 	}
 
 
+>>>>>>> frontend
 	return { 
 		error,
 		isValid:isEmpty(error)
