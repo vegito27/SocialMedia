@@ -27,21 +27,6 @@ router.get('/:id',(request,response)=>{
  })
 
 
-router.delete('/:id',passport.authenticate('jwt',{session:false}),(request,response)=>{
-	Profile.findOne({user:request.user.id})
-	.then(profile=>{
-		Post.findById(request.params.id)
-		.then(post=>{
-			if(post.user.toString()!==request.user.id){
-				return response.status(401).json({notauthorized :'User not authorized'}) 
-			}
-			post.remove().then(()=> response.json({success:true}))
-		})
-		.catch(err=> response.status(404).json({postnotFound:'no Post found with that Id'}))
-	})
-}) 
-
-
 router.post('/',passport.authenticate('jwt',{session:false}),(request,response)=>{
 	const {error,isValid}=validatePostInput(request.body)	
 	if(!isValid){
@@ -55,6 +40,21 @@ router.post('/',passport.authenticate('jwt',{session:false}),(request,response)=
 	})
 	newPost.save().then(post=>response.json(post)).catch(err=>response.status(404).json(err)) 
 })
+
+
+router.delete('/:id',passport.authenticate('jwt',{session:false}),(request,response)=>{
+	Profile.findOne({user:request.user.id})
+	.then(profile=>{
+		Post.findById(request.params.id)
+		.then(post=>{
+			if(post.user.toString()!==request.user.id){
+				return response.status(401).json({notauthorized :'User not authorized'}) 
+			}
+			post.remove().then(()=> response.json({success:true}))
+		})
+		.catch(err=> response.status(404).json({postnotFound:'no Post found with that Id'}))
+	})
+}) 
 
 
 
