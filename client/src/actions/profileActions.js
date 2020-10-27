@@ -33,7 +33,7 @@ export const getCurrentProfile=()=>dispatch=>{
 }
 
 
-
+//GET PROFILE by HANDLE
 export const getProfileByHandle=(handle)=>dispatch=>{
 
 	dispatch(setProfileLoading())
@@ -54,8 +54,7 @@ export const getProfileByHandle=(handle)=>dispatch=>{
 	)
 }
 
-
-
+//GET ALL PROFILES
 
 export const getProfiles=()=>dispatch=>{
 
@@ -79,6 +78,8 @@ export const getProfiles=()=>dispatch=>{
 	)
 }
 
+// CREATE PROFILE
+
 export const createProfile=(profileData,history)=>dispatch=>{
 
 	axios
@@ -94,6 +95,7 @@ export const createProfile=(profileData,history)=>dispatch=>{
 	)
 }
 
+//CREATE EXPERIENCE
 
 export const addExperience=(expData,history)=>dispatch=>{
 
@@ -114,6 +116,8 @@ export const addExperience=(expData,history)=>dispatch=>{
 	})
 }
 
+//DELETE EXPERIENCE
+
 export const deleteExperience=(id)=>dispatch=>{
 
 	axios
@@ -133,6 +137,22 @@ export const deleteExperience=(id)=>dispatch=>{
 	})
 }
 
+//CREATE POST
+
+export const addEducation=(eduData,history)=>dispatch=>{
+
+	axios
+	.post('/profile/education',eduData)
+	.then(res=>history.push('/dashboard'))
+	.catch(err=>{
+		dispatch({
+			type:GET_ERRORS,
+			payload:err.response.data
+		})
+	})
+}
+
+//DELETE POST
 
 export const deleteEducation=(id)=>dispatch=>{
 
@@ -154,23 +174,6 @@ export const deleteEducation=(id)=>dispatch=>{
 }
 
 
-export const addEducation=(eduData,history)=>dispatch=>{
-
-	axios
-	.post('/profile/education',eduData)
-	.then(res=>history.push('/dashboard'))
-	.catch(err=>{
-		dispatch({
-			type:GET_ERRORS,
-			payload:err.response.data
-		})
-	})
-}
-
-
-
-
-
 export const clearCurrentProfile=()=>{
 
 	return {
@@ -178,6 +181,7 @@ export const clearCurrentProfile=()=>{
 	}
 } 
 
+// DELETE ACCOUNT
 
 export const deleteAccount=()=>dispatch=>{
 

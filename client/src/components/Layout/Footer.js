@@ -11,7 +11,7 @@ export default class Footer extends React.Component {
 		return (
 
 			<footer className="bg-dark text-white mt-5 p-4 text-center footer fixed-bottom">
-			Copyright &copy;{new Date().getFullYear()} DevConnector
+				Copyright &copy;{new Date().getFullYear()} DevConnector
 
 			</footer>
 		);

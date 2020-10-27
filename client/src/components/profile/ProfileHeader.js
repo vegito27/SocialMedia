@@ -18,7 +18,7 @@ class ProfileHeader extends React.Component {
 
 				 <div className="col-md-12 ">
 
-					 <div className="card card-body bg-info text-white mb-3 ">
+					 <div className="card card-body bg-info text-white mb-2">
 						 
 							<div className="row">
 								<div className="col-2 col-md-3 m-auto">
@@ -29,7 +29,6 @@ class ProfileHeader extends React.Component {
 							          />
 								</div>
 							</div>
-
 
 			          <div className="text-center">
 
@@ -42,27 +41,27 @@ class ProfileHeader extends React.Component {
 
 					           <p>{isEmpty(profile.social &&  profile.website)?null:(<a className="text-white mx-2" href={profile.website} target="_blank" rel="noopener noreferrer">
 					              <i className="fas fa-globe fa-2x" />
-					            </a>)}
+						            </a>)}
 
-					            {isEmpty(profile.social && profile.social.youtube)?null:(<a className="text-white mx-2" href={profile.social.youtube} target="_blank" rel="noopener noreferrer">
-					              <i className="fas fa-youtube fa-2x" />
-					            </a>)}
+						            {isEmpty(profile.social && profile.social.youtube)?null:(<a className="text-white mx-2" href={profile.social.youtube} target="_blank" rel="noopener noreferrer">
+						              <i className="fas fa-youtube fa-2x" />
+						            </a>)}
 
-					            {isEmpty(profile.social && profile.social.facebook)?null:(<a className="text-white mx-2" href={profile.social.facebook} target="_blank" rel="noopener noreferrer">
-					              <i className="fas fa-facebook fa-2x" />
-					            </a>)}
+						            {isEmpty(profile.social && profile.social.facebook)?null:(<a className="text-white mx-2" href={profile.social.facebook} target="_blank" rel="noopener noreferrer">
+						              <i className="fas fa-facebook fa-2x" />
+						            </a>)}
 
-					            {isEmpty(profile.social && profile.social.twitter)?null:(<a className="text-white mx-2" href={profile.social.twitter} target="_blank" rel="noopener noreferrer">
-					              <i className="fas fa-twitter fa-2x" ></i>
-					            </a>)}
+						            {isEmpty(profile.social && profile.social.twitter)?null:(<a className="text-white mx-2" href={profile.social.twitter} target="_blank" rel="noopener noreferrer">
+						              <i className="fas fa-twitter fa-2x" ></i>
+						            </a>)}
 
-					            {isEmpty(profile.social && profile.linkedin)?null:(<a className="text-white mx-2" href={profile.social.linkedin} target="_blank" rel="noopener noreferrer">
-					              <i className="fab fa-linkedin fa-2x" />
-					            </a>)}
+						            {isEmpty(profile.social && profile.linkedin)?null:(<a className="text-white mx-2" href={profile.social.linkedin} target="_blank" rel="noopener noreferrer">
+						              <i className="fab fa-linkedin fa-2x" />
+						            </a>)}
 
-					            {isEmpty(profile.social && profile.instagram)?null:(<a className="text-white mx-2" href={profile.social.instagram} target="_blank" rel="noopener noreferrer">
-					              <i className="fab fa-instagram fa-2x"/>
-					            </a>)}   
+						            {isEmpty(profile.social && profile.instagram)?null:(<a className="text-white mx-2" href={profile.social.instagram} target="_blank" rel="noopener noreferrer">
+						              <i className="fab fa-instagram fa-2x"/>
+						            </a>)}   
 					            
 					            </p>
 				          </div>
@@ -79,3 +78,5 @@ class ProfileHeader extends React.Component {
 }
 
 export default ProfileHeader
+
+

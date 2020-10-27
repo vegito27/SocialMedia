@@ -33,7 +33,7 @@ class Navbar extends React.Component {
 
 				<li className="nav-item">
 					<a href="#" onClick={this.onLogoutClick.bind(this)} className="nav-link">
-						<img className="rounded-circle" src={user.avatar} alt={user.name} style={{width:'25px',marginRight:'5px'}} title="You must have a gratar connected to your email to display " />
+						<img className="rounded-circle" src={user.avatar} alt={user.name} style={{width:'25px',marginRight:'5px'}} title="You must have a gravatar connected to your email to display " />
 							Logout
 					</a>
 				</li>
@@ -55,8 +55,6 @@ class Navbar extends React.Component {
 
 			</ul>)
 
-
-
 		return (
 			
 				<nav className="nav navbar-expand-sm navbar-dark bg-dark mb-4">
@@ -65,6 +63,7 @@ class Navbar extends React.Component {
 						<div className="collapse navbar-collapse mt-2 mb-2" id="mobile-nav">
 
 						<Link className="navbar-brand" to="/">DevConnector</Link>
+
 						 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
 						 	<span className="navbar-toggler" />
 						 </button>

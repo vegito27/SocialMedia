@@ -53,8 +53,8 @@ class Profile extends React.Component {
 					<ProfileHeader profile={profile}/ >
 					<ProfileAbout  profile={profile}/ >
 					<ProfileCreds education={profile.education} experience={profile.experience}/>
-
-					 {profile.githubusername ? (<ProfileGitHub username={profile.githubusername}/>):null }
+					{profile.githubusername ? (<ProfileGitHub username={profile.githubusername}/>):null }
+					
 				</div>
 			)	
 		}

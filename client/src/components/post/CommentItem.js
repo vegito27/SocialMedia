@@ -20,34 +20,35 @@ import {deleteComment} from '../../actions/postActions'
 		const {comment,postId,auth}=this.props
 
 		return (
+			<>
 		<div className="card card-body mb-3">
 				<div className="row">
 					<div className="col-md-2">
 
-						<img href="profile.html" className="rounded-circle d-none d-md-block" src={comment.avatar} alt="" />
-						<br />
-						<p className="text-center d-inline" >{comment.name}</p>
+						<img href="#" className="rounded-circle d-none d-md-block" src={comment.avatar} alt="" />
+						<p className="text-center" >{comment.name}</p>
 
-						<div className="col-md-10 d-inline">
+					</div>
 
-							<p className="lead">{comment.text}</p>
-							
-							{ comment.user===auth.user.id?(
-								<span>
-									<button
-										onClick={this.onDeleteClick.bind(this,postId,comment._id)}
-										type="button"
-										className="btn btn-danger mr-1"><i className="fas fa-times" ></i>
+					<div className="col-md-10 d-inline">
 
-									</button>
+						<p className="lead">{comment.text}</p>
+						
+						{ comment.user===auth.user.id?(
+							<span>
+								<button
+									onClick={this.onDeleteClick.bind(this,postId,comment._id)}
+									type="button"
+									className="btn btn-danger mr-1"><i className="fas fa-times" ></i>
 
-								</span>) : null }
-
-								 
-						</div>
+								</button>
+							</span>) : null }
 					</div>
 				</div>
 			</div>
+
+			
+			</>
 		);
 	}
 }

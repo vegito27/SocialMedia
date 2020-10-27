@@ -11,15 +11,12 @@ import Education from './Education'
 class Dashboard extends React.Component {
 
 	componentDidMount(){
-
-		this.props.getCurrentProfile() 
-	
-	} 
+			this.props.getCurrentProfile() 	
+		} 
 
 	onDeleteClick(e){
-
-		this.props.deleteAccount()
-	}
+			this.props.deleteAccount()
+		}
 
 	render() {
 
@@ -28,8 +25,6 @@ class Dashboard extends React.Component {
 		console.log(this.props)
 
 	    const {profile,loading}=this.props.profile;
-
-
 
 		let dashboardContent;
 
@@ -43,19 +38,18 @@ class Dashboard extends React.Component {
 			
 			dashboardContent=(
 					<div>
+						<p className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link></p>
+						<ProfileActions />
+						<Experience experience={profile.experience} />
+						<hr className="mt-5 mb-5"/>
+						<Education education={profile.education} />
+						<div style={{marginBottom:'60px'}} />
+						<button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete My Account</button>
 
-					<p className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link></p>
-					<ProfileActions />
-					<Experience experience={profile.experience} />
-					<hr className="mt-5 mb-5"/>
-					<Education education={profile.education} />
+					</div>)
 
-					<div style={{marginBottom:'60px'}} />
-					<button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete My Account</button>
-
-					</div>
-				)		
-			}else{
+			}
+			else{
 
 				dashboardContent=(
 					<div>
@@ -85,7 +79,6 @@ class Dashboard extends React.Component {
 	}
 }
 
-
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount:PropTypes.func.isRequired,
@@ -93,12 +86,10 @@ Dashboard.propTypes = {
   profile: PropTypes.object.isRequired
 };
 
-
 const mapStateToProps=state=>({
 	profile:state.profile,
 	auth:state.auth
 })
-
 
 export default connect(mapStateToProps,{ getCurrentProfile ,deleteAccount})(Dashboard)
 

@@ -100,11 +100,11 @@ class CreateProfile extends React.Component {
 				githubusername:profile.githubusername,
 				bio:profile.bio,
 				skills:skillsCSV,
-				twitter:profile.twitter,
-				facebook:profile.facebook,
-				linkedin:profile.linkedin,
-				youtube:profile.youtube,
-				linkedin:profile.linkedin
+				twitter:profile.social.twitter,
+				facebook:profile.social.facebook,
+				linkedin:profile.social.linkedin,
+				youtube:profile.social.youtube,
+				instagram:profile.social.instagram
 			})
 
 		}
@@ -126,7 +126,7 @@ class CreateProfile extends React.Component {
 			socialInputs= (<div>
 
 				<InputGroup 
-					placeholder="linkedin Profile URL"
+					placeholder="Twitter Profile URL"
 					name="twitter"
 					icon="fab fa-twitter"
 					value={this.state.twitter}
@@ -176,15 +176,15 @@ class CreateProfile extends React.Component {
 		}
 
 		const options=[
-		{label:'* Select Professional Status',value:0 },
-		{label:'Developer',value:'Developer'},
-		{label:'Juniour Developer',value:'Juniour Developer'},
-		{label:'Seniour eveloper',value:'Seniour Developer'},
-		{label:'Manager',value:'Manager'},
-		{label:'Student or learning',value:'Student or learning'},
-		{label:'Instructor or Teacher',value:'Instructor or Teacher'},
-		{label:'Intern',value:'Intern'},
-		{label:'Other',value:'Other'}
+			{label:'* Select Professional Status',value:0 },
+			{label:'Developer',value:'Developer'},
+			{label:'Juniour Developer',value:'Juniour Developer'},
+			{label:'Seniour eveloper',value:'Seniour Developer'},
+			{label:'Manager',value:'Manager'},
+			{label:'Student or learning',value:'Student or learning'},
+			{label:'Instructor or Teacher',value:'Instructor or Teacher'},
+			{label:'Intern',value:'Intern'},
+			{label:'Other',value:'Other'}
 		]
 
 		return (
@@ -196,7 +196,6 @@ class CreateProfile extends React.Component {
 							<small className="d-block pb-3">* = required fields</small>
 							<Link to="/dashboard" className=" btn btn-primary">Go Back</Link>
 					
-				
 							<form onSubmit={this.onSubmit}>
 
 							<TextFieldGroup 
@@ -272,23 +271,29 @@ class CreateProfile extends React.Component {
 							/>
 
 							<div className="mb-3">
-								<button type="button "
-									onClick={()=>{this.setState(prevState=>({
-									displaySocialInputs:!prevState.displaySocialInputs
+								<button type="button"
+									onClick={
+										()=>{
+										    this.setState(prevState=>
 
-								})
-							)}} className="btn btn-light">Add Social Network Links</button>
+												({
+
+													displaySocialInputs:!prevState.displaySocialInputs
+												})
+										)}
+									}
+									className="btn btn-secondary">Edit Social Network Links</button>
 
 								<span className="text-muted">Optional</span>
+
+								{socialInputs}
 
 							</div>
 
 							<input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
 							 <div style={{marginBottom:'120px'}} />
 
-
 							</form>
-
 
 						</div>
 					</div> 
@@ -305,12 +310,9 @@ CreateProfile.propTypes={
 	error:PropTypes.object.isRequired 
 }
 
-
 const mapStateToProps=state=>({
-
 	profile:state.profile,
 	error:state.error
 })
-
 
 export default connect(mapStateToProps,{createProfile,getCurrentProfile})(withRouter(CreateProfile))

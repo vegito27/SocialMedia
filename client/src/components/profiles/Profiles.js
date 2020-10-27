@@ -61,7 +61,6 @@ Profiles.propTypes={
 	profile:PropTypes.object.isRequired
 }
 
-
 const mapStateToProps=state=>({
 
 	profile:state.profile

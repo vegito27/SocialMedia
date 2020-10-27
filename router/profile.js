@@ -27,10 +27,10 @@ router.get('/',passport.authenticate('jwt',{session:false}),(request,response)=>
 
 })
 
+
 router.delete('/',passport.authenticate('jwt',{session:false}) , async (req, res) => {
   try {
-    // Remove user posts
-    // Remove profile
+   
     await Profile.findOneAndRemove({ user: req.user.id });
     // Remove user
     await User.findOneAndRemove({ _id: req.user.id });
@@ -41,6 +41,7 @@ router.delete('/',passport.authenticate('jwt',{session:false}) , async (req, res
     res.status(500).send('Server Error');
   }
 });
+
 
 router.get('/handle/:handle',(request,response)=>{
 
@@ -63,7 +64,6 @@ router.get('/handle/:handle',(request,response)=>{
 })
 
 
-
 router.get('/user/:user_id', async (request,response)=>{
 
 	const error={}
@@ -81,9 +81,6 @@ router.get('/user/:user_id', async (request,response)=>{
 	})
 	.catch(err=>response.status().json(err)) 
 })
-
-
-
 
 router.get('/all',(request,response)=>{
 
@@ -104,7 +101,6 @@ router.get('/all',(request,response)=>{
 })
 
 
-
 router.post('/experience',passport.authenticate('jwt',{session:false}),(request,response)=>{
 
 	const {error,isValid}=validateExperienceInput(request.body)
@@ -114,34 +110,30 @@ router.post('/experience',passport.authenticate('jwt',{session:false}),(request,
 		return response.status(400).json(error)
 	}
 
+	Profile
+	.findOne({user:request.user.id})
+	.then(profile=>{
 
-	Profile.findOne({user:request.user.id})
-		.then(profile=>{
+		const newExp={
+			title:request.body.title,
+			company:request.body.company,
+			from:request.body.from,
+			to:request.body.to,
+			current:request.body.current,
+			description:request.body.description
+		}
 
-			const newExp={
+		profile.experience.unshift(newExp)
 
-				title:request.body.title,
-				company:request.body.company,
-				from:request.body.from,
-				to:request.body.to,
-				current:request.body.current,
-				description:request.body.description
-
-			}
-
-			profile.experience.unshift(newExp)
-
-			profile.save().then(profile=>{
-				response.json(profile)
-			}) 
+		profile
+		.save()
+		.then(profile=>{response.json(profile)}) 
 		}).catch(err=>response.status(404).json(err))
-
 
 })
 
 
 router.delete('/experience/:exp_id',passport.authenticate('jwt',{session:false}),(request,response)=>{
-
 
 	Profile.findOne({user:request.user.id})
 		.then(profile=>{
@@ -248,7 +240,6 @@ router.post('/',passport.authenticate('jwt',{session:false}),(request,response)=
 	if(request.body.linkedin) profileFields.social.linkedin=request.body.linkedin
 	if(request.body.instagram) profileFields.social.instagram=request.body.instagram
 	if(request.body.facebook) profileFields.social.facebook=request.body.facebook
-
 
 
 	Profile.findOne({user:request.user.id})

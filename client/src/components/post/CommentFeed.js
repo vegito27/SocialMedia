@@ -13,9 +13,9 @@ import CommentItem from './CommentItem'
 
 		const {comments,postId}=this.props
 
-
 		return (
-			comments.map(comment=><CommentFeed key={comment._id} comment={comment} postId={postId}/>)
+			comments.map(comment=><CommentItem key={comment._id} comment={comment} postId={postId}/>)
+
 		);
 	}
 }
@@ -25,6 +25,5 @@ CommentFeed.propTypes={
 	postId:PropTypes.string.isRequired
 
 }
-
 
 export default CommentFeed

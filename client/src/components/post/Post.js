@@ -10,7 +10,6 @@ import CommentFeed from './CommentFeed'
 
 class Post extends React.Component {
 
-
 	componentDidMount(){
 		this.props.getPost(this.props.match.params.id)
 	}
@@ -31,17 +30,15 @@ class Post extends React.Component {
 
 		}else{
 
-			postContent=(
-				<div>
-					<PostItem post={post} showActions={false} />
-					<CommentForm postId={post._id} />
-					<CommentFeed postId={post._id} comments={post.comments}   />
-
-				</div>
-
-			)
+			postContent=
+				(
+					<div>
+						<PostItem post={post} showActions={false} />
+						<CommentForm postId={post._id} />
+						<CommentFeed postId={post._id} comments={post.comments}   />
+					</div>
+					)
 		}
-
 
 		return (
 			<div clasName="post">
@@ -50,6 +47,7 @@ class Post extends React.Component {
 						<div className="col-md-12">
 							<Link to="/feed" className="btn btn-light mb-3">Back To Feed</Link>
 							{postContent}
+							<div style={{marginBottom:'120px'}} />
 						</div>
 					</div>
 				</div>
@@ -57,7 +55,6 @@ class Post extends React.Component {
 		);
 	}
 }
-
 
 Post.propTypes={
 	getPost:PropTypes.func.isRequired,

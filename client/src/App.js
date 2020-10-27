@@ -93,7 +93,6 @@ function App() {
 
             <Route exact path="/not-found" component={NotFound} />
             
-
           </div>
         <Footer />
       </div>

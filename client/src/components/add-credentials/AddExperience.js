@@ -25,16 +25,13 @@ import {addExperience} from '../../actions/profileActions'
  		this.onChange=this.onChange.bind(this)
  		this.onSubmit=this.onSubmit.bind(this)
  		this.onCheck=this.onCheck.bind(this)
-
  	}
-
 
  	componentWillReceiveProps(nextProps){
 
  		if(nextProps.error){
  			this.setState({error:nextProps.error})
  		}
-
  	}
 
  	onChange(e){
@@ -45,6 +42,7 @@ import {addExperience} from '../../actions/profileActions'
  		e.preventDefault()
 
  		const expData={
+
  			company:this.state.company,
  			title:this.state.title,
  			location:this.state.location,
@@ -64,19 +62,17 @@ import {addExperience} from '../../actions/profileActions'
  			current:!this.state.current
  		})
  	}
-
 	
 	render() {
 
 		const {error}=this.state
-
 
 		return (
 			<div className="add-experience">
 				<div className="container">
 					<div className="row">
 						<div className="col-md-8 m-auto">
-						<Link to="/dashboard" className="btn btn-light">Go Back</Link>
+						<Link to="/dashboard" className="btn btn-light btn-primary">Go Back</Link>
 						<h4 className="display text-center">Add Experience</h4>
 						<p className="lead text-center">Add any job or position that you have in the past or current</p>
 						<small className="d-blockpb-3">* = required fields</small>

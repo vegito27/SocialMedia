@@ -16,8 +16,6 @@ import {deleteExperience} from '../../actions/profileActions'
 		this.props.deleteExperience(id)
 	}
 
-
-
 	render() {
 
 		console.log(this.props.experience)
@@ -36,8 +34,7 @@ import {deleteExperience} from '../../actions/profileActions'
 				<td><button onClick={this.onDeleteClick.bind(this,exp._id )} className="btn btn-danger">Delete</button></td>
 
 			</tr>
-			))
-
+		))
 
 		return (
 			<div >

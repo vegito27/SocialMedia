@@ -17,7 +17,6 @@ export const registerUser=(userData,history)=>dispatch=>{
 
 		})
 	)}
-	
 
 export const setCurrentUser=(decoded) =>{
 
@@ -54,6 +53,7 @@ export const loginUser=userData=>dispatch=>{
 		})
 	)
 }
+
 
 export const logOutUser=()=>dispatch=>{
 

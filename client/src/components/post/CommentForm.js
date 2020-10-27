@@ -28,7 +28,6 @@ import TextAreaFieldGroup from '../../common/TextAreaFieldGroup'
 		 }
 	}
 
-
 	onSubmit(e){
 
 		e.preventDefault();
@@ -54,9 +53,7 @@ import TextAreaFieldGroup from '../../common/TextAreaFieldGroup'
 	onChange(e){
 
  		this.setState({[e.target.name]:e.target.value})
-
  	}
-
 
 	render() {
 
@@ -81,7 +78,6 @@ import TextAreaFieldGroup from '../../common/TextAreaFieldGroup'
 					</div>
 				
 				</div>
-				 <div style={{marginBottom:'120px'}} />
 			</div>
 		);
 	}

@@ -10,7 +10,6 @@ class Landing extends React.Component {
 		if (this.props.auth.isAuthenticated){
 
 			this.props.history.push('/dashboard') 
-
 		}
 	}
 

@@ -27,17 +27,13 @@ class Register extends React.Component {
 
 	componentWillReceiveProps(nextProps){
 		if(nextProps.error){
-
 			this.setState({error:nextProps.error})
-
 		}
 	}
 
 	onChange(e){
-
-		this.setState({[e.target.name]:e.target.value})
-
-	}
+			this.setState({[e.target.name]:e.target.value})
+		}
 
 	onSubmit(e){
 		 e.preventDefault();
@@ -138,21 +134,16 @@ class Register extends React.Component {
 	}
 }
 
-
-
-
 Register.propTypes={
 	registerUser:PropTypes.func.isRequired,
 	auth:PropTypes.object.isRequired,
 	error:PropTypes.object.isRequired
 }
 
-
 const mapStateToProps=(state)=>({
 	auth:state.auth,
 	error:state.error
 })
 
-
-
 export default connect(mapStateToProps,{registerUser})(withRouter(Register));
+

@@ -11,9 +11,8 @@ import PostFeed from './PostFeed'
 class Posts extends React.Component {
 
 	componentDidMount(){
-		this.props.getPosts()
-
-	}	
+			this.props.getPosts()
+		}	
 
 	render() {
 
@@ -33,7 +32,7 @@ class Posts extends React.Component {
 
 		return (
 			<div className="feed">
-				<div className="container ">
+				<div className="container">
 					<div className="row">
 						<div className="col-md-12">
 							<PostForm />
@@ -41,7 +40,7 @@ class Posts extends React.Component {
 						</div>
 					</div>
 				</div>
-				 <div style={{marginBottom:'120px'}} />
+				<div style={{marginBottom:'120px'}} />
 			</div>
 		);
 	}
@@ -56,5 +55,6 @@ const mapStateToProps=state=>({
 	post:state.post
 })
 
-
 export default connect(mapStateToProps,{getPosts})(Posts)
+
+
