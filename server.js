@@ -14,6 +14,7 @@ const mongoose=require("mongoose");
 
 const bodyParser=require('body-parser')
 
+const path=require('path')
 
 app.use(bodyParser.urlencoded({extended:false}))
 
@@ -43,6 +44,17 @@ app.get("/", (req, res) => {
 app.use('/api/users',users)
 app.use('/api/profile',profile)
 app.use('/api/posts',posts)
+
+if(process.env.NODE_ENV==='production'){
+
+	app.use(express.static('client/build'))
+
+	app.get('*',(request,response)=>{
+
+		response.sendFile(path.resolve(__dirname,'client','build','index.html'))
+
+	})
+}
 
 
 app.listen(4000, () => {

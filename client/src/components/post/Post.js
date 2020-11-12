@@ -14,9 +14,6 @@ class Post extends React.Component {
 		this.props.getPost(this.props.match.params.id)
 	}
 
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
 

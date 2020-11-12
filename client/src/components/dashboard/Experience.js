@@ -8,9 +8,6 @@ import {deleteExperience} from '../../actions/profileActions'
  
  class Experience extends React.PureComponent {
 
-	constructor(props) {
-		super(props);
-	}
 
 	onDeleteClick(id){
 		this.props.deleteExperience(id)

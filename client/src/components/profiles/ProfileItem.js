@@ -8,9 +8,6 @@ import {Profile} from '../../components/profile/Profile'
 
 class ProfileItem extends React.Component {
 
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
 

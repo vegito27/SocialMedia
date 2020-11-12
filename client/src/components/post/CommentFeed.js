@@ -5,10 +5,6 @@ import CommentItem from './CommentItem'
 
  class CommentFeed extends React.Component {
 	
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 
 		const {comments,postId}=this.props

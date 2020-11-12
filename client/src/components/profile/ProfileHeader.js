@@ -3,10 +3,6 @@ import isEmpty from '../../validations/is-empty'
 
 class ProfileHeader extends React.Component {
 	
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 
 		const {profile}=this.props;
@@ -44,15 +40,15 @@ class ProfileHeader extends React.Component {
 						            </a>)}
 
 						            {isEmpty(profile.social && profile.social.youtube)?null:(<a className="text-white mx-2" href={profile.social.youtube} target="_blank" rel="noopener noreferrer">
-						              <i className="fas fa-youtube fa-2x" />
+						              <i className="fab fa-youtube fa-2x" />
 						            </a>)}
 
 						            {isEmpty(profile.social && profile.social.facebook)?null:(<a className="text-white mx-2" href={profile.social.facebook} target="_blank" rel="noopener noreferrer">
-						              <i className="fas fa-facebook fa-2x" />
+						              <i className="fab fa-facebook fa-2x" />
 						            </a>)}
 
 						            {isEmpty(profile.social && profile.social.twitter)?null:(<a className="text-white mx-2" href={profile.social.twitter} target="_blank" rel="noopener noreferrer">
-						              <i className="fas fa-twitter fa-2x" ></i>
+						              <i className="fab fa-twitter fa-2x" ></i>
 						            </a>)}
 
 						            {isEmpty(profile.social && profile.linkedin)?null:(<a className="text-white mx-2" href={profile.social.linkedin} target="_blank" rel="noopener noreferrer">

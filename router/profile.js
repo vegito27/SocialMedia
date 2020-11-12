@@ -139,8 +139,8 @@ router.delete('/experience/:exp_id',passport.authenticate('jwt',{session:false})
 		.then(profile=>{
 
 			const removeIndex=profile.experience
-			.map(item=>item.id)
-			.indexOf(request.params.exp_id)
+				.map(item=>item.id)
+				.indexOf(request.params.exp_id)
 
 			profile.experience.splice(removeIndex,1)
 

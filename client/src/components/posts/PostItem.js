@@ -8,9 +8,6 @@ import {deletePost,addLike,removeLike } from '../../actions/postActions'
 
 class PostItem extends React.Component {
 
-	constructor(props) {
-			super(props);
-		}
 
 	onDeleteClick(id){
 			this.props.deletePost(id)

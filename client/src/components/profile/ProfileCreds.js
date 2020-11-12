@@ -4,10 +4,7 @@ import Moment from 'react-moment'
 
 class ProfileCreds extends React.Component {
 	
-	constructor(props) {
-		super(props);
-	}
-
+	
 	render() {
 
 		const {experience,education}=this.props

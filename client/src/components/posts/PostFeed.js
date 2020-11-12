@@ -4,10 +4,7 @@ import PostItem from './PostItem'
 
 class PostFeed extends React.Component {
 	
-	constructor(props) {
-		super(props);
-	}
-
+	
 	render() {
 		const {posts}=this.props;
 

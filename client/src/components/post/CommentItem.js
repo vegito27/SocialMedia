@@ -5,9 +5,6 @@ import {deleteComment} from '../../actions/postActions'
 
  class CommentItem extends React.Component {
 	
-	constructor(props) {
-		super(props);
-	}
 
 	onDeleteClick(postId,commentId){
 

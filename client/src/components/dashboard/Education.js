@@ -8,9 +8,6 @@ import {deleteEducation} from '../../actions/profileActions'
  
  class Education extends React.PureComponent {
 
-	constructor(props) {
-		super(props);
-	}
 
 	onDeleteClick(id){
 		this.props.deleteEducation(id)

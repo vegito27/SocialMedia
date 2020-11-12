@@ -72,7 +72,7 @@ import {addExperience} from '../../actions/profileActions'
 				<div className="container">
 					<div className="row">
 						<div className="col-md-8 m-auto">
-						<Link to="/dashboard" className="btn btn-light btn-primary">Go Back</Link>
+						<Link to="/dashboard" className="btn btn-primary">Go Back</Link>
 						<h4 className="display text-center">Add Experience</h4>
 						<p className="lead text-center">Add any job or position that you have in the past or current</p>
 						<small className="d-blockpb-3">* = required fields</small>
