@@ -14,6 +14,9 @@ const mongoose=require("mongoose");
 
 const bodyParser=require('body-parser')
 
+const {MONGO_URI}=require('./config/keys')
+
+
 const path=require('path')
 
 app.use(bodyParser.urlencoded({extended:false}))
@@ -24,10 +27,8 @@ app.use(passport.initialize())
 
 require('./config/passport')(passport) 
 
-const uri="mongodb+srv://socialApp:rishabh@123@cluster0.sadge.gcp.mongodb.net/mydb?retryWrites=true&w=majority"
 
-
-mongoose.connect(uri,{ useUnifiedTopology: true , useNewUrlParser: true })
+mongoose.connect(MONGO_URI,{ useUnifiedTopology: true , useNewUrlParser: true })
 
 const connection=mongoose.connection;
 
@@ -44,6 +45,7 @@ app.get("/", (req, res) => {
 app.use('/api/users',users)
 app.use('/api/profile',profile)
 app.use('/api/posts',posts)
+ 
 
 if(process.env.NODE_ENV==='production'){
 
@@ -56,7 +58,9 @@ if(process.env.NODE_ENV==='production'){
 	})
 }
 
-
 app.listen(4000, () => {
   console.log("server start at 4000");
 });	 
+
+
+

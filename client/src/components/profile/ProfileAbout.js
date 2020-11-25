@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
 import {Profile} from '../../components/profile/Profile'
 
 
-
 class ProfileAbout extends React.Component {
 	
 

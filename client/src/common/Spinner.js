@@ -6,7 +6,7 @@ export default class Spinner extends React.PureComponent {
 	render() {
 		return (
 			<div>
-			<img src={spinner} style={{width:"200px",margin:'auto',display:'block' }} alt="Loading..." />
+				<img src={spinner} style={{width:"200px",margin:'auto',display:'block' }} alt="Loading..." />
 
 			</div>
 		);
