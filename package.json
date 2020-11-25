@@ -2,12 +2,12 @@
   "name": "socialmedia-bradtraversy",
   "version": "1.0.0",
   "description": "Social media App",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm install --prefix client",
+    "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
@@ -24,7 +24,6 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "gravatar": "^1.8.1",
     "jsonwebtoken": "^8.5.1",
@@ -35,6 +34,7 @@
     "validator": "^13.1.17"
   },
   "devDependencies": {
+    "concurrently": "^5.3.0",
     "nodemon": "^2.0.4"
   }
 }
